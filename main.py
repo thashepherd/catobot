@@ -1,10 +1,11 @@
 import os
 import time
+from secrets import SLACK_BOT_TOKEN
 from slackclient import SlackClient
 
 BOT_NAME = 'catobot'
-SLACK_BOT_TOKEN='xoxb-112944287299-9KfcIjoxhrRbQc3ErCZY9U48'
 SLACK_BOT_ID='U3ATS8F8T'
+SLACK_BOT_TOKEN=SLACK_BOT_TOKEN
 AT_BOT = "<@" + SLACK_BOT_ID + ">"
 READ_WEBSOCKET_DELAY = 1
 
