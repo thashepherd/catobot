@@ -31,7 +31,7 @@ def parse_slack_output(slack_rtm_output):
           return delenda, output['text'].split(AT_BOT)[1].strip(), output['channel']
         elif "rubicon" in output['text'].lower():
           return rubicon, None, output['channel']
-  return None, None
+  return None, None, None
 
 if __name__ == "__main__":
   if slack_client.rtm_connect():
@@ -39,7 +39,8 @@ if __name__ == "__main__":
     while True:
       command, arg, channel = parse_slack_output(slack_client.rtm_read())
       if command and channel:
-        handle_command(command, channel)
         time.sleep(READ_WEBSOCKET_DELAY)
+        handle_command(channel, command, arg)
+
   else:
     print("Connection failed. Invalid slack token (" + SLACK_BOT_TOKEN + ") or bot ID (" + SLACK_BOT_ID + ")?")
